@@ -1,0 +1,103 @@
+<template>
+	<div class="slds-grid slds-wrap">
+		<div class="slds-col slds-size_7-of-12">
+			<div class="slds-form-element">
+			<label class="slds-form-element__label" for="combobox-id-5" id="combobox-label-id-37">Select Object</label>
+					<div class="slds-form-element__control">
+						<div class="slds-combobox_container slds-has-selection">
+						<div class={searchResultClass}>
+							<div class={divClass1} role="none">
+							<template if:false={flag1}>
+								<input type="text" class="slds-input slds-combobox__input" id="combobox-id-1" aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox" auto-complete="off" role="combobox" placeholder="Search..." 
+								oninput={handleInput}
+								onblur={handleBlur}
+								onclick={handleInputClick}
+								/>
+								<span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+									<svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+									<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#search"></use>
+									</svg>
+								</span>
+							</template>		
+							<template if:true={flag1}>
+								<span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title="Account">
+									<svg class="slds-icon slds-icon_small" aria-hidden="true">
+										<use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
+									</svg>
+									<span class="slds-assistive-text">Object</span>
+								</span>
+								<div role="combobox" tabindex="0" class="slds-input_faux slds-combobox__input slds-combobox__input-value" aria-labelledby="combobox-label-id-37 combobox-id-5-selected-value" id="combobox-id-5-selected-value" aria-controls="listbox-id-5" aria-expanded="false"
+									aria-haspopup="listbox">
+									<span class="slds-truncate" id="combobox-value-id-24">{currentlySelected.Label}</span>
+								</div>
+								<button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Remove selected option"
+										onclick={handleClear}>
+									<svg class="slds-button__icon" aria-hidden="true">
+									<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+									</svg>
+									<span class="slds-assistive-text">Remove selected option</span>
+								</button>
+							</template>	
+							
+						</div>
+
+						<div
+							id="listbox-id-1" 
+							class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+							role="listbox" 
+							aria-label="Placeholder for Dropdown Items" 
+							tabindex="0" 
+							aria-busy="false"
+							onmousedown={handleComboboxMouseDown}
+							onmouseup={handleComboboxMouseUp}
+							>
+							<ul class="slds-listbox slds-listbox_vertical" role="presentation">
+
+								<div lwc:if={loading}>
+									<lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+								</div>
+
+								<template 
+									for:each={listData}
+									for:item="row"
+									for:index="i"
+									lwc:if={listData}
+									>
+									<li role="presentation" 
+										class="slds-listbox__item"
+										key={row.QualifiedApiName}
+										>
+										<div id="option226"
+											class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+											role="option"
+											onclick={handleResultClick}
+											data-recordid={row.QualifiedApiName}
+											>
+											<span class="slds-media__figure slds-listbox__option-icon">
+												<span class="slds-icon_container slds-icon-standard-account">
+													<svg class="slds-icon slds-icon_small" aria-hidden="true">
+													<use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
+													</svg>
+												</span>
+											</span>
+											<span class="slds-media__body">
+		<span class="slds-listbox__option-text slds-listbox__option-text_entity">{row.Label}</span>
+											
+											</span>
+										</div>
+									</li>
+								</template>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="slds-col slds-size_5-of-12">
+			<template if:true={openMultiselectCmp}>
+				<c-multiselect-lwc picklist-input={getObjectFields} field-name-with-api={_objectsFields}></c-multiselect-lwc>
+			</template>
+		</div>
+	</div>
+</template>

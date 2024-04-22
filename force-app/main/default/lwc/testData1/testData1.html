@@ -1,0 +1,37 @@
+<!-- yourComponent.html -->
+<template>
+    <lightning-card>
+    <div class="pagination-controls">
+        <!-- Alphabet navigation links -->
+        
+            <div class="alphabet-navigation">
+            <template for:each={alphabetArray} for:item="alphabet">
+                <a key={alphabet} href="javascript:void(0);" onclick={navigateToAlphabet} data-alphabet={alphabet} class="alphabet-link">{alphabet}</a>
+            </template>
+        </div>
+            
+        
+        <!-- Rest of your component content -->
+        <lightning-datatable 
+            data={pagedData} 
+            columns={columns} 
+            key-field="id"
+            selected-rows={selectedRecords}
+            onrowselection={handleRowSelection}
+        ></lightning-datatable>
+        <div class="pagination-buttons">
+            <!-- Pagination controls -->
+            <lightning-button-group>
+                <lightning-button label="First" onclick={goToFirstPage}></lightning-button>
+                <lightning-button label="Prev" onclick={goToPreviousPage}></lightning-button>
+                <lightning-input type="number" label="Go to Page" min="1" value={currentPage} onchange={handlePageChange}></lightning-input>
+                <lightning-button label="Next" onclick={goToNextPage}></lightning-button>
+                <lightning-button label="Last" onclick={goToLastPage}></lightning-button>
+            </lightning-button-group>
+        </div>
+        <div class="total-pages">
+            Total Pages: {totalPages}
+        </div>
+    </div>
+    </lightning-card>
+</template>

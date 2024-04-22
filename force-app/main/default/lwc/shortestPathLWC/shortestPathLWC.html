@@ -1,0 +1,14 @@
+<!-- ShortestPathLWC.html -->
+<template>
+    <lightning-card title="Shortest Path Accounts" icon-name="custom:custom30">
+        <div class="slds-m-around_medium">
+            <ul>
+                <template for:each={shortestPathAccounts} for:item="account">
+                    <li key={account.Id}>
+                        {account.Name} - GeoLocation: {account.JefGeoLocation__Latitude__s}, {account.JefGeoLocation__Longitude__s}
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+</template>

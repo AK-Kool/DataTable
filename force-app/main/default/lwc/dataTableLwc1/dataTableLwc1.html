@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Data">
+        <div class="slds-var-m-around_medium">
+            <template if:true={visibleData}>
+                <lightning-datatable
+                    key-field="id"
+                    columns={columns}
+                    data={visibleData}
+                    selected-rows={selectedRows}
+                    onrowselection={handleRowSelection}
+                    >
+                </lightning-datatable> 
+            </template>    
+        </div>
+        <div slot="footer" class="slds-var-m-horizontal_medium">
+            <template if:true={allRecords}>
+                <c-data-table-pagination 
+                    ondataload={handleData}
+                    all-records={allRecords}
+                    >
+                </c-data-table-pagination>
+            </template>
+        </div>
+    </lightning-card>    
+</template>

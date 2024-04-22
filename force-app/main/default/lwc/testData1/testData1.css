@@ -1,0 +1,28 @@
+.pagination-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alphabet-navigation {
+    margin-bottom: 10px;
+}
+
+.alphabet-link {
+    font-size: 12px;
+    padding: 0 5px;
+    text-decoration: none;
+    color: #f0215fef;
+}
+
+.alphabet-link:hover {
+    text-decoration: underline;
+}
+
+.pagination-buttons {
+    margin-bottom: 10px;
+}
+
+.total-pages {
+    margin-top: 10px;
+}

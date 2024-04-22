@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Accounts" icon-name="standard:account">
+        <div class="slds-m-around_medium">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="6" padding="around-small"></lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input type="search" label="Search Account" onchange={handleSearch}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template if:true={data}>
+                <lightning-datatable data-id="datatable" key-field="Id" data={data} columns={columns}
+                    show-row-number-column="true" selected-rows={selectedRows} onrowselection={handleRowSelection}>
+                </lightning-datatable>
+            </template>
+            <template if:true={error}>
+                {error}>
+            </template>
+        </div>
+    </lightning-card>
+</template>
