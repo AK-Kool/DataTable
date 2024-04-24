@@ -1,3 +1,35 @@
+<!-- LwcState.html -->
 <template>
-		
+    <lightning-card title="LWC Datatable with Master Checkbox" icon-name="standard:account">
+        <div class="slds-m-around_medium">
+            <input type="checkbox" id="masterCheckbox" checked={masterSelected} onchange={handleMasterChange}></input>
+            <label for="masterCheckbox">Select All</label>
+            <lightning-datatable
+                key-field="id"
+                data={paginatedData}
+                columns={columns}
+                selected-rows={selectedRows}
+                onsave={handleSave}
+                onrowselection={handleRowChange}
+                sorted-by={sortColumn}
+                sorted-direction={sortDirection}
+                onsort={handleSort}>
+            </lightning-datatable>
+            <!-- Pagination Controls -->
+            <div class="slds-m-top_medium">
+                <button class="slds-button slds-button_neutral" onclick={handlePrevious} disabled={isFirstPage}>Previous</button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button class="slds-button slds-button_neutral" onclick={handleNext} disabled={isLastPage}>Next</button>
+            </div>
+            <!-- Page Size Selector -->
+            <div class="slds-m-top_medium">
+                <label for="pageSize">Page Size:</label>
+                <select id="pageSize" onchange={handlePageSizeChange}>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </lightning-card>
 </template>

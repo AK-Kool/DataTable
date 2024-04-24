@@ -26,10 +26,12 @@ export default class LightningRoot extends LightningElement {
         e.detail.forEach(currentItem => {
             this.columns.push({
                 label: currentItem.fName,
-                fieldName: currentItem.fApiName
+                fieldName: currentItem.fApiName,
+                sortable: true
             });
         });
-        this.template.querySelector('c-data-table-lwc1').columnsChanged(this.columns);
+        //this.template.querySelector('c-data-table-lwc1').columnsChanged(this.columns);
+        this.template.querySelector('c-test-data1').columnsChanged(this.columns);
     }
 
     get columnStatus(){

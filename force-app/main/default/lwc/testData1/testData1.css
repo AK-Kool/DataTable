@@ -1,3 +1,14 @@
+/* yourComponent.css */
+.pagination-buttons lightning-layout {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-buttons lightning-layout-item {
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+
 .pagination-controls {
     display: flex;
     flex-direction: column;
@@ -12,7 +23,7 @@
     font-size: 12px;
     padding: 0 5px;
     text-decoration: none;
-    color: #f0215fef;
+    color: #0070d2;
 }
 
 .alphabet-link:hover {
@@ -25,4 +36,8 @@
 
 .total-pages {
     margin-top: 10px;
+}
+
+.pagination-input {
+    width: 40px; /* Adjust the width as needed */
 }

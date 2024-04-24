@@ -1,22 +1,29 @@
+<!-- data-table.html -->
 <template>
-	<lightning-card variant="Narrow" title="Hello" icon-name="standard:account">
-		<table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
-            <thead>
-                <tr class="slds-line-height_reset">
-                    <th scope="col">Months</th>
-                    <th scope="col">Saving</th>
-			    </tr>
-            </thead>
-            <tbody>
-                <tr class="slds-hint-parent">
-				    <td data-label="Opportunity Name">
-                        <div class="slds-truncate" title="Jan">JAN</div>    
-                    </td>
-				    <td data-label="Saving">
-                        <div class="slds-truncate" title="100">100$</div>
-                    </td>
-			    </tr>
-            </tbody>
-		</table>
-	</lightning-card>
+  <div class="slds-p-horizontal_small">
+    <lightning-datatable
+      key-field="id"
+      columns={columns}
+      data={paginatedContacts}
+      selected-rows={preselectedContactRow}
+      onrowselection={handleRecordSelect}
+    >
+    </lightning-datatable>
+    <div class="slds-grid slds-grid_align-center slds-m-top_small">
+      <lightning-button-icon
+        icon-name="utility:chevronleft"
+        onclick={handlePreviousPage}
+        disabled={isPreviousDisabled}
+        alternative-text="Previous"
+      >
+      </lightning-button-icon>
+      <lightning-button-icon
+        icon-name="utility:chevronright"
+        onclick={handleNextPage}
+        disabled={isNextDisabled}
+        alternative-text="Next"
+      >
+      </lightning-button-icon>
+    </div>
+  </div>
 </template>

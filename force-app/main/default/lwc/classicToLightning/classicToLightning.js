@@ -32,17 +32,17 @@ export default class ClassicToLightning extends LightningElement {
 
     handleInput(e){
         if(e.target.value.length > 2){
-            let abc = this.listData.filter(r => {
+            let val = this.listData.filter(r => {
                 
-                if(r.Label.includes(e.target.value)){
+                if(r.Label.toLowerCase().includes(e.target.value.toLowerCase())){
                     return true;
                 }
             });
-            if(abc.length === undefined || abc.length === 0){
-                abc = [];
-                abc.push({ Label: 'No Object Found.'});
+            if(val.length === undefined || val.length === 0){
+                val = [];
+                val.push({ Label: 'No Object Found.'});
             }
-            this.listData = [...abc];
+            this.listData = [...val];
             this.searchResultClass += ' slds-is-open';
         } 
         else if(e.target.value.length < 2){
@@ -59,11 +59,11 @@ export default class ClassicToLightning extends LightningElement {
     }
 
     handleInputClick(e){
-        if(e.target.value.length > 2){
+        //if(e.target.value.length > 2){
             this.searchResultClass += ' slds-is-open'; 
-        }
-        else if(e.target.value.length < 2)
-            this.searchResultClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
+        //}
+        // else if(e.target.value.length < 2)
+        //     this.searchResultClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
     }
 
     handleComboboxMouseDown(e){
@@ -88,7 +88,7 @@ export default class ClassicToLightning extends LightningElement {
 
         // make a callout
         getFields({
-            objName: this.currentlySelected.Label
+            objName: this.currentlySelected.QualifiedApiName
         }).then(result => {
             this._objectsFields = result;
             this.objectFieldsArray = [];

@@ -14,17 +14,12 @@ export default class DataTableLwc1 extends LightningElement {
     @track selectedRecords;
 
     handleData(e){
-         this.updateSelectedRecords([{id: "row-0"}]);
+         
 
         this.visibleData = e.detail.visibleRec;
         this.currentPage = e.detail.currentPage;
     }
 
-    updateSelectedRecords(data){
-        for (let i = 0; i < data.length; i++) {
-            this.selectedRows.push(data[i].id);
-        }
-    }
 
     connectedCallback(){
         getRecords2({

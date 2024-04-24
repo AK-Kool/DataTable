@@ -1,37 +1,65 @@
-<!-- yourComponent.html -->
 <template>
     <lightning-card>
-    <div class="pagination-controls">
-        <!-- Alphabet navigation links -->
-        
+        <div class="pagination-controls">
             <div class="alphabet-navigation">
-            <template for:each={alphabetArray} for:item="alphabet">
-                <a key={alphabet} href="javascript:void(0);" onclick={navigateToAlphabet} data-alphabet={alphabet} class="alphabet-link">{alphabet}</a>
+                <template for:each={alphabetArray} for:item="alphabet">
+                    <a key={alphabet} href="javascript:void(0);" onclick={navigateToAlphabet} data-alphabet={alphabet}
+                        class="alphabet-link">{alphabet}</a>
+                </template>
+                <a href="javascript:void(0);" onclick={navigateToAlphabet} data-alphabet="ALL"
+                        class="alphabet-link">ALL</a>
+            </div>
+
+            <template if:true={pagedData}>
+                <lightning-datatable 
+                data={pagedData} 
+                columns={columns} 
+                key-field="id"  
+                onrowselection={handleRowSelection} 
+                sorted-by={sortBy} 
+                sorted-direction={sortDirection} 
+                onsort={handleSort}
+                selected-rows={preselectedContactRow}
+                >
+            </lightning-datatable>
             </template>
+
+    </br>
+            <lightning-layout>
+                    
+                <div class="pagination-buttons">
+                        <lightning-layout-item>
+                            Selected Records: {getSelectedRecordCount}
+                        </lightning-layout-item>  
+                        <lightning-layout-item>
+                            <a href="javascript:void(0);" onclick={goToFirstPage}>First</a>
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            <a href="javascript:void(0);" onclick={goToPreviousPage}>Prev</a>
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            Page
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            <input  
+                                min="1" 
+                                value={currentPage}
+                                onchange={handlePageChange}
+                                class="slds-input pagination-input"
+                            />
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            of {totalPages}
+                        </lightning-layout-item>    
+                        <lightning-layout-item>
+                            <a href="javascript:void(0);" onclick={goToNextPage}>Next</a>
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            <a href="javascript:void(0);" onclick={goToLastPage}>Last</a>
+                        </lightning-layout-item>
+                    
+                </div>
+            </lightning-layout>
         </div>
-            
-        
-        <!-- Rest of your component content -->
-        <lightning-datatable 
-            data={pagedData} 
-            columns={columns} 
-            key-field="id"
-            selected-rows={selectedRecords}
-            onrowselection={handleRowSelection}
-        ></lightning-datatable>
-        <div class="pagination-buttons">
-            <!-- Pagination controls -->
-            <lightning-button-group>
-                <lightning-button label="First" onclick={goToFirstPage}></lightning-button>
-                <lightning-button label="Prev" onclick={goToPreviousPage}></lightning-button>
-                <lightning-input type="number" label="Go to Page" min="1" value={currentPage} onchange={handlePageChange}></lightning-input>
-                <lightning-button label="Next" onclick={goToNextPage}></lightning-button>
-                <lightning-button label="Last" onclick={goToLastPage}></lightning-button>
-            </lightning-button-group>
-        </div>
-        <div class="total-pages">
-            Total Pages: {totalPages}
-        </div>
-    </div>
     </lightning-card>
 </template>
